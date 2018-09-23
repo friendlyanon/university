@@ -17,14 +17,30 @@ public final class Lifetime implements java.lang.AutoCloseable {
         System.out.print(input);
     }
 
+    String kettes(int szam) {
+        StringBuilder buf = new StringBuilder(30);
+        while (szam != 0) {
+            buf.append(szam & 1);
+            szam >>>= 1;
+        }
+        return buf.reverse().toString();
+    }
+
     double getDouble(String message) {
         log(message + "\n");
-        return Double.parseDouble(scanner.nextLine());
+        try { return scanner.nextDouble(); }
+        catch (Exception e) { return 0; }
+    }
+
+    int getInt() {
+        try { return scanner.nextInt(); }
+        catch (Exception e) { return 0; }
     }
 
     int getInt(String message) {
         log(message + "\n");
-        return Integer.parseInt(scanner.nextLine());
+        try { return scanner.nextInt(); }
+        catch (Exception e) { return 0; }
     }
 
     int minMax(final int min, final int max) {
