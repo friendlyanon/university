@@ -22,25 +22,20 @@ public class MainTest {
         final int[] tomb3 = { 3, 2, 2 };
         final int[] tomb4 = { 2, 3, 2 };
         final int[] tomb5 = { 2, 2, 3 };
+        final int[] tomb6 = { 2, 3, 3 };
+        final int[] tomb7 = { 3, 3, 2 };
         assertEquals("Mind páros", Main.parosok(tomb1));
         assertEquals("Nem mind páros", Main.parosok(tomb2));
         assertEquals("Nem mind páros", Main.parosok(tomb3));
         assertEquals("Középső páratlan", Main.parosok(tomb4));
         assertEquals("Nem mind páros", Main.parosok(tomb5));
+        assertEquals("Középső páratlan", Main.parosok(tomb6));
+        assertEquals("Nem mind páros", Main.parosok(tomb7));
     }
 
     @Test
     public void harmadikFeladat() {
-        final int[] tomb1 = { 2, 2, 2 };
-        final int[] tomb2 = { 3, 3, 3 };
-        final int[] tomb3 = { 3, 2, 2 };
-        final int[] tomb4 = { 2, 3, 2 };
-        final int[] tomb5 = { 2, 2, 3 };
-        assertEquals("Mind páros", Main.parosok(tomb1));
-        assertEquals("Nem mind páros", Main.parosok(tomb2));
-        assertEquals("Nem mind páros", Main.parosok(tomb3));
-        assertEquals("Középső páratlan", Main.parosok(tomb4));
-        assertEquals("Nem mind páros", Main.parosok(tomb5));
+        // TODO: implement
     }
 
 }

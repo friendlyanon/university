@@ -1,32 +1,31 @@
 package net.hallgato.progalap;
 
+import com.sun.jdi.InvalidTypeException;
+
+import java.util.List;
+
 public class Main {
-    static String parosok(int[] tomb) {
-        final int hossz = tomb.length;
-        final int fele = (hossz - 1) / 2;
-        for (int i = 0; i < hossz; ++i) {
-            if (tomb[i] % 2 == 0) continue;
-            return i == fele ? "Középső páratlan" : "Nem mind páros";
-        }
-        return "Mind páros";
-    }
 
     static class Pair<T, U> {
         final T first;
         final U second;
 
         Pair(T t, U u) {
-            this.first = t;
-            this.second = u;
+            first = t;
+            second = u;
         }
     }
 
-    private static void kiir() {
-        System.out.println();
-    }
-
-    private static <T> void kiir(T ertek) {
-        System.out.println(ertek);
+    @SafeVarargs
+    private static <T> void kiir(T ... elemek) {
+        if (elemek.length == 0) {
+            System.out.println();
+            return;
+        }
+        for (final T elem : elemek) {
+            System.out.print(elem);
+        }
+        System.out.print('\n');
     }
 
     @SuppressWarnings("unchecked")
@@ -46,22 +45,35 @@ public class Main {
         return new Pair(max, count);
     }
 
-    public static void main(String[] args) {
-	    final int tombHossz = 21;
-	    final Integer[] szazalek = new Integer[tombHossz];
-	    for (int i = 0; i < tombHossz; ++i) {
-	        szazalek[i] = (int)(Math.random() * 101);
+    static String parosok(int[] tomb) {
+        final int hossz = tomb.length;
+        for (int i = 0; i < hossz; ++i) {
+            if (tomb[i] % 2 == 0) continue;
+            if (hossz % 2 == 0) return "Nem mind páros";
+            return i == hossz / 2 ? "Középső páratlan" : "Nem mind páros";
+        }
+        return "Mind páros";
+    }
+
+    private static void elsoFeladat() {
+        final int tombHossz = 21;
+        final Integer[] szazalek = new Integer[tombHossz];
+        for (int i = 0; i < tombHossz; ++i) {
+            szazalek[i] = (int)(Math.random() * 101);
         }
 
-	    Pair<Integer, Long> parok = max(szazalek);
-        kiir("Legnyagyobb érték: " + parok.first);
-        kiir("Hányszor fordul elő: " + parok.second);
+        final Pair<Integer, Long> parok = max(szazalek);
+        kiir("Legnyagyobb érték: ", parok.first);
+        kiir("Hányszor fordul elő: ", parok.second);
 
-        for (final int elem : szazalek) {
-            if (elem < 5) {
-                kiir("Van 5-nél kisebb szám");
-                break;
+        outer: {
+            for (final int elem : szazalek) {
+                if (elem < 5) {
+                    kiir("Van 5-nél kisebb szám");
+                    break outer;
+                }
             }
+            kiir("Nincs 5-nél kisebb szám");
         }
 
         double atlag = 0;
@@ -73,11 +85,14 @@ public class Main {
             }
         }
         if (darab > 0) {
-            kiir("Hány szám éri el a 91-et? " + darab);
-            kiir("Átlaguk: " + (atlag /= darab));
+            kiir("Hány szám éri el a 91-et? ", darab, "\nÁtlaguk: ", (atlag / darab));
         }
         else {
             kiir("Egy szám sem éri el a 91-et");
         }
+    }
+
+    public static void main(String[] args) {
+        elsoFeladat();
     }
 }
