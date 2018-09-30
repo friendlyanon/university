@@ -1,7 +1,5 @@
 package net.hallgato.progalap;
 
-import org.w3c.dom.ranges.RangeException;
-
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Vector;
@@ -224,7 +222,7 @@ public class Main {
             sor.append(displayNum > 9 ? " " : "  ");
             sor.append(i + 2);
             sor.append(" | ");
-            for (double j = 74 * (count[i] / legtobb); j > 0; --j) {
+            for (double j = 73 * (count[i] / legtobb); j > 0; --j) {
                 sor.append("*");
             }
             kiir(sor.toString());
