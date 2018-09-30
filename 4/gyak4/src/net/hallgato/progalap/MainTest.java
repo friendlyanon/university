@@ -24,6 +24,9 @@ public class MainTest {
         final int[] tomb5 = { 2, 2, 3 };
         final int[] tomb6 = { 2, 3, 3 };
         final int[] tomb7 = { 3, 3, 2 };
+        final int[] tomb8 = { 2, 3, 2, 2 };
+        final int[] tomb9 = { 2, 2, 3, 2 };
+        final int[] tomb10 = { 2, 2, 3, 2, 2 };
         assertEquals("Mind páros", Main.parosok(tomb1));
         assertEquals("Nem mind páros", Main.parosok(tomb2));
         assertEquals("Nem mind páros", Main.parosok(tomb3));
@@ -31,6 +34,9 @@ public class MainTest {
         assertEquals("Nem mind páros", Main.parosok(tomb5));
         assertEquals("Középső páratlan", Main.parosok(tomb6));
         assertEquals("Nem mind páros", Main.parosok(tomb7));
+        assertEquals("Nem mind páros", Main.parosok(tomb8));
+        assertEquals("Nem mind páros", Main.parosok(tomb9));
+        assertEquals("Középső páratlan", Main.parosok(tomb10));
     }
 
     @Test
