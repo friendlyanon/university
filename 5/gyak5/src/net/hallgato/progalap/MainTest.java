@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class MainTest {
+class MainTest {
 
     @Test
-    public void masodik() {
+    void masodik() {
         // Main.masodikFeladat(new int[1]);
         final int mettol = 40;
         final int meddig = 100;
@@ -18,7 +18,7 @@ public class MainTest {
     }
 
     @Test
-    public void generalas(final int hossz, final int mettol, final int meddig, final int db) {
+    void generalas(final int hossz, final int mettol, final int meddig, final int db) {
         final int[] tomb = Main.tombGen(hossz, mettol, meddig, db);
         for (int i = 0; i < db; ++i) {
             final int elem = tomb[i];
@@ -30,26 +30,21 @@ public class MainTest {
     }
 
     @Test
-    public void minIndexTest() {
-        final int[] indexek = {
-            Main.minHol(new int[] {1, 2, 3}).first,
-            Main.minHol(new int[] {1, 2, 3}).first,
-            Main.minHol(new int[] {1, 2, 3}).first,
-            Main.minHol(new int[] {1, 2, 3}).first,
-        };
+    void minIndexTest() {
     }
 
     @Test
-    public void tombGenUj() {
+    void tombGenUj() {
         generalas(10, 20, 50, 5);
     }
 
     @Test
-    public void tombTorol() {
+    void tombTorol() {
         final int[] tomb = { 2, 3, 4, 0, 0, 0 };
         int db = 3;
         final int minIndex = Main.minHol(tomb, db).first;
         Main.tombKiir(tomb);
+
         db = Main.tombTorol(tomb, db, minIndex);
         Main.tombKiir(tomb);
         assertEquals(2, db);
