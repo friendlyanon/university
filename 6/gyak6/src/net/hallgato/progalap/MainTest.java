@@ -8,21 +8,21 @@ import static org.junit.Assert.assertEquals;
 public class MainTest {
 
     @Test
-    public  void lnkoDifferent() {
+    public void lnkoDifferent() {
         final int a = 10;
         final int b = 15;
         assertEquals(5, Main.lnko(a, b));
     }
 
     @Test
-    public  void lnkoSame() {
+    public void lnkoSame() {
         final int a = 15;
         final int b = 15;
         assertEquals(15, Main.lnko(a, b));
     }
 
     @Test
-    public  void egyszerusitett() {
+    public void egyszerusitett() {
         final int a = 10;
         final int b = 15;
         final int lnko = Main.lnko(a, b);
@@ -36,7 +36,7 @@ public class MainTest {
     }
 
     @Test
-    public  void samu() {
+    public void samu() {
         Main.Samu samu = new Main.Samu(10, 1);
         while (!samu.leesett) {
             Main.kiir("Hol van Samu? ", samu.kp);
