@@ -134,10 +134,104 @@ class MainTest {
     }
 
     @Test
-    void pozitivAtlag_ures_tomb() {
-        final double[] tomb = { };
-        double osszeg = Main.pozitivAtlag(tomb);
-        assertEquals(0.0, osszeg);
+    void diszkriminans_123() {
+        final double diszkr = Main.diszkriminans(1, 2, 3);
+        assertEquals(-8.0, diszkr);
+    }
+
+    @Test
+    void egyenlet_0_1_2() {
+        final Main.Pair<Double, Double> gyokok = Main.egyenletSzamito(0, 1, 2);
+        assertEquals(gyokok.first.doubleValue(), gyokok.second.doubleValue());
+    }
+
+    @Test
+    void egyenlet_minusz1_1_2() {
+        assertThrows(IllegalArgumentException.class, () -> Main.egyenletSzamito(-1, 1, 2));
+    }
+
+    @Test
+    void egyenlet_1_1_2() {
+        final Main.Pair<Double, Double> gyokok = Main.egyenletSzamito(1, 1, 2);
+        assertNotEquals(gyokok.first.doubleValue(), gyokok.second.doubleValue());
+    }
+
+    @Test
+    void megegyezoVane_ures() {
+        final int[] tomb = {};
+        assertFalse(Main.megegyezoVane(tomb));
+    }
+
+    @Test
+    void megegyezoVane_1() {
+        final int[] tomb = { 1 };
+        assertFalse(Main.megegyezoVane(tomb));
+    }
+
+    @Test
+    void megegyezoVane_11() {
+        final int[] tomb = { 1, 1 };
+        assertTrue(Main.megegyezoVane(tomb));
+    }
+
+    @Test
+    void megegyezoVane_121() {
+        final int[] tomb = { 1, 2, 1 };
+        assertTrue(Main.megegyezoVane(tomb));
+    }
+
+    @Test
+    void egymasutanMegegyezoVane_ures() {
+        final int[] tomb = {};
+        assertFalse(Main.egymasutanMegegyezoVane(tomb));
+    }
+
+    @Test
+    void egymasutanMegegyezoVane_1() {
+        final int[] tomb = { 1 };
+        assertFalse(Main.egymasutanMegegyezoVane(tomb));
+    }
+
+    @Test
+    void egymasutanMegegyezoVane_11() {
+        final int[] tomb = { 1, 1 };
+        assertTrue(Main.egymasutanMegegyezoVane(tomb));
+    }
+
+    @Test
+    void egymasutanMegegyezoVane_121() {
+        final int[] tomb = { 1, 2, 1 };
+        assertFalse(Main.egymasutanMegegyezoVane(tomb));
+    }
+
+    @Test
+    void egymasutanMegegyezoVane_1211() {
+        final int[] tomb = { 1, 2, 1, 1 };
+        assertTrue(Main.egymasutanMegegyezoVane(tomb));
+    }
+
+    @Test
+    void negyzetszamVane_ures() {
+        final int[] tomb = {};
+        assertFalse(Main.negyzetszamVane(tomb));
+    }
+
+    @Test
+    void negyzetszamVane_8() {
+        final int[] tomb = { 8 };
+        assertFalse(Main.negyzetszamVane(tomb));
+    }
+
+    @Test
+    void negyzetszamVane_89() {
+        final int[] tomb = { 8, 9 };
+        assertTrue(Main.negyzetszamVane(tomb));
+    }
+
+    @Test
+    void negyzetszamVane_98() {
+        final int[] tomb = { 9, 8 };
+        assertTrue(Main.negyzetszamVane(tomb));
     }
 
 }
