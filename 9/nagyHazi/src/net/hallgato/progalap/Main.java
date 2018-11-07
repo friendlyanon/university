@@ -53,7 +53,8 @@ public class Main extends Measurements {
 
     private static int fastLog10(int v) {
         if (v < 0) {
-            v = v == Integer.MIN_VALUE ? -(v + 1) : -v;
+            if (v == Integer.MIN_VALUE) return 9;
+            v = -v;
         }
         return (v >= 1000000000) ? 9 : (v >= 100000000) ? 8 :
         (v >= 10000000) ? 7 : (v >= 1000000) ? 6 :
@@ -61,13 +62,12 @@ public class Main extends Measurements {
         (v >= 1000) ? 3 : (v >= 100) ? 2 : (v >= 10) ? 1 : 0;
     }
 
-    static <T> Stream<T> asStream(Iterator<T> sourceIterator) {
-        Iterable<T> iterable = () -> sourceIterator;
-        return StreamSupport.stream(iterable.spliterator(), false);
+    static Stream<Geology> asStream(GetAllGeology it) {
+        return StreamSupport.stream(it.spliterator(), false);
     }
 
-    private static int difference(final double a, final double b) {
-        return (int)(a > b ? a - b : b - a);
+    private static int difference(final int a, final int b) {
+        return a > b ? a - b : b - a;
     }
 
     private static int sumGeologies() {
