@@ -1,7 +1,8 @@
 package net.hallgato.progalap;
 
 public class Main {
-    public static int ennyiminjo(Hallgato[] gain1, int maxpont) {
+    private static Pont[] pontok = null;
+    private static int ennyiminjo(Hallgato[] gain1, int maxpont) {
         int count = 0;
         double hetven = maxpont * 0.7;
         for (Hallgato hallgato : gain1) {
@@ -115,7 +116,7 @@ public class Main {
     }
     private static void negyedik() {
         Pont origo = new Pont(0, 0);
-        Pont[] pontok = new Pont[10];
+        pontok = new Pont[10];
         for (int i = 0; i < 10; ++i) {
             Pont pont = new Pont(Math.random() * 12 - 4, Math.random() * 12 - 4);
             pont.tav = tav(pont, origo);
@@ -139,15 +140,75 @@ public class Main {
         }
         Pont sp = new Pont(atlagX / 10, atlagY / 10);
         System.out.println("Súlypont - x: " + sp.x + ", y: " + sp.y);
+        System.out.println("Súlypont " + tav(origo, sp) + " egységre van az origótól");
         for (int i = 0; i < 10; ++i) {
             Pont pont = pontok[i];
             pont.stav = tav(pont, sp);
         }
+    }
+    private static int haziElso() {
+        for (int i = 0, len = pontok.length; i < len; ++i) {
+            final double tav = pontok[i].tav;
+            if (9 < tav && tav < 11) return i;
+        }
+        return -1;
+    }
+    private static int haziMasodik(int[] t1, int db1, int[] t2, int db2) {
+        // feladat szövege elolvasása után: https://i.imgur.com/rDdgZTZ.jpg
+        for (int i = 0, k = 0, j = db1; i < db1; ++i) {
+            final int val = t1[i];
+            if (val < 0) {
+                t2[k++] = val;
+            }
+            else {
+                t2[--j] = val;
+            }
+        }
+        return db1;
+    }
+    private static int[] csakparos(int[] t, int db, int[] t2) {
+        int db2 = 0;
+        for (int i = 0; i < db; ++i) {
+            int val = t[i];
+            if (val % 2 > 0) continue;
+            t2[db2++] = val;
+        }
+        return t2;
+    }
+    private static int takarekosCsakparos(int[] t, int db) {
+        int db2 = 0;
+        for (int i = 0; i < db; ++i) {
+            int val = t[i];
+            if (val % 2 > 0) continue;
+            t[db2++] = val;
+        }
+        return db2;
+    }
+    private static void haziHarmadik() {
+        int[] t = new int[10];
+        int[] t2 = new int[10];
+        for (int i = 0; i < 4; ++i) {
+            t[i] = (int)(Math.random() * 101);
+        }
+        csakparos(t, 4, t2);
+        takarekosCsakparos(t, 4);
     }
     public static void main(String[] args) {
         elso();
         masodik();
         harmadik();
         negyedik();
+
+        System.out.println("1. házi - index: " + haziElso());
+        int[] t1 = new int[20];
+        int[] t2 = new int[20];
+        for (int i = 0; i < 10; ++i) {
+            t1[i] = (int)(Math.random() * 11);
+        }
+        for (int i = 0; i < 5; ++i) {
+            t2[i] = (int)(Math.random() * 11);
+        }
+        haziMasodik(t1, 10, t2, 5);
+        haziHarmadik();
     }
 }
