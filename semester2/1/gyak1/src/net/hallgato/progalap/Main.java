@@ -34,8 +34,8 @@ public class Main {
         if (array == null) return 0;
         final var fn = attrib.getFunc();
         int count = 0;
-        for (int i = 0, len = array.length; i < len; ++i) {
-            count += fn.applyAsInt(array[i]);
+        for (int val : array) {
+            count += fn.applyAsInt(val);
         }
         return count;
     }
@@ -124,14 +124,12 @@ public class Main {
 
     public static Car newestCar(Car[] array) {
         if (array == null) return null;
-        final int len = array.length;
-        switch (len) {
+        switch (array.length) {
             case 0: return null;
             case 1: return array[0];
         }
         Car car = array[0];
-        for (int i = 0; i < len; ++i) {
-            Car current = array[i];
+        for (Car current : array) {
             if (car.yearOfManufacture < current.yearOfManufacture) car = current;
         }
         return car;

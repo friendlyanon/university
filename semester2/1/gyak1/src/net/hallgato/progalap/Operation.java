@@ -2,7 +2,7 @@ package net.hallgato.progalap;
 
 public enum Operation {
     Sum(new Op() {
-        public double apply(int[] array) {
+        double apply(int[] array) {
             if (array == null) return 0;
             int sum = 0;
             for (int val : array) sum += val;
@@ -10,7 +10,7 @@ public enum Operation {
         }
     }),
     Multiply(new Op() {
-        public double apply(int[] array) {
+        double apply(int[] array) {
             if (array == null) return 0;
             final int len = array.length;
             switch (len) {
@@ -25,7 +25,7 @@ public enum Operation {
         }
     }),
     Average(new Op() {
-        public double apply(int[] array) {
+        double apply(int[] array) {
             if (array == null) return 0;
             int sum = 0;
             for (int val : array) sum += val;
@@ -33,7 +33,7 @@ public enum Operation {
         }
     }),
     PositiveCount(new Op() {
-        public double apply(int[] array) {
+        double apply(int[] array) {
             if (array == null) return 0;
             int count = 0;
             for (int val : array) if (val > 0) ++count;
@@ -41,7 +41,7 @@ public enum Operation {
         }
     }),
     AboveAverage(new Op() {
-        public double apply(int[] array) {
+        double apply(int[] array) {
             if (array == null) return 0;
             final double avg = Operation.Average.getFunc().apply(array);
             int count = 0;
@@ -50,8 +50,8 @@ public enum Operation {
         }
     });
 
-    protected abstract static class Op {
-        public abstract double apply(int[] array);
+    abstract static class Op {
+        abstract double apply(int[] array);
     }
 
     private final Op func;
